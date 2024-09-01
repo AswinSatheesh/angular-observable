@@ -1,6 +1,7 @@
 import { AfterViewInit } from '@angular/core';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { fromEvent, map,from, Observable, of } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { fromEvent,from, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -38,11 +39,19 @@ export class AppComponent {
   promiseData = new Promise((resolve,reject) => {
     resolve([10,20,30,40]);
   })
-  myObservable = from([2,4,6,8]);
+  myObservable = from([1,6,5,8]);
 
   myNewObser = this.myObservable.pipe(map((val)=>{
     return val * 10;
-  }))
+  }),
+  filter((value,i)=>{
+    return value % 4 === 0;
+  })
+  )
+
+  // filteredNewObser = this.myNewObser.pipe(filter((value)=>{
+  //   return value % 4 === 0;
+  // }))
 
   GetAsyncData() {
     // this.myObservable.subscribe((val: any) => {
