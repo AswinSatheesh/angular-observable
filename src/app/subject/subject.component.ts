@@ -51,20 +51,33 @@ export class SubjectComponent implements OnInit {
 
     // ajdata.subscribe(subject);
 
-    const asyncSubject = new AsyncSubject();
+    // const asyncSubject = new AsyncSubject();
 
-    asyncSubject.next(100);
-    asyncSubject.next(200);
-    asyncSubject.next(300);
+    // asyncSubject.next(100);
+    // asyncSubject.next(200);
+    // asyncSubject.next(300);
 
-    asyncSubject.subscribe(data => {console.log(`Subscriber1 : ${data}`);
-    })
+    // asyncSubject.subscribe(data => {console.log(`Subscriber1 : ${data}`);
+    // })
  
-    asyncSubject.complete();
-    asyncSubject.next(400);
-    asyncSubject.complete();
-    asyncSubject.subscribe(data => {console.log(`Subscriber2 : ${data}`);
+    // asyncSubject.complete();
+    // asyncSubject.next(400);
+    // asyncSubject.complete();
+    // asyncSubject.subscribe(data => {console.log(`Subscriber2 : ${data}`);
+    // })
+
+    const promise = new Promise((resolve,reject)=>{
+      resolve(100);
+      console.log("Promise Executed");
+    });
+
+    const obs = new Observable((sub)=>{
+      sub.next(100);
+      console.log('Observalbe executed');
+      
     })
+
+    obs.subscribe();
   }
 
 }
